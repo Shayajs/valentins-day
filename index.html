@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Le Guide Saint-Valentin de Lucas & Cannelle</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            dark: { 900: '#0a0a0f', 800: '#12121a', 700: '#1a1a26', 600: '#22222e' },
+            electric: { DEFAULT: '#00b4ff', light: '#66d4ff', dim: '#0080b3' },
+            rose: { DEFAULT: '#ff6b9d', light: '#ff9ec0', dim: '#cc4070' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    body { background-color: #0a0a0f; }
+    .glow-electric { box-shadow: 0 0 20px rgba(0, 180, 255, 0.15), 0 0 60px rgba(0, 180, 255, 0.05); }
+    .glow-rose { box-shadow: 0 0 20px rgba(255, 107, 157, 0.15), 0 0 60px rgba(255, 107, 157, 0.05); }
+    .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .card-hover:hover { transform: translateY(-4px); }
+    .gradient-text-electric { background: linear-gradient(135deg, #00b4ff, #66d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gradient-text-rose { background: linear-gradient(135deg, #ff6b9d, #ff9ec0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .gradient-text-mixed { background: linear-gradient(135deg, #00b4ff, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .tab-indicator { transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1), left 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s ease; }
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+    .toast { animation: toastIn 0.3s ease-out, toastOut 0.3s ease-in 1.7s forwards; }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes toastOut { from { opacity: 1; } to { opacity: 0; transform: translateY(-10px); } }
+    .pulse-dot { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .slide-up { animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+    .float-bar { animation: floatIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes floatIn { from { opacity: 0; transform: translateY(30px) translateX(-50%) scale(0.9); } to { opacity: 1; transform: translateY(0) translateX(-50%) scale(1); } }
+    .timeline-line { background: linear-gradient(180deg, #00b4ff 0%, #ff6b9d 100%); }
+    .drag-over { border-color: #00b4ff !important; background: rgba(0,180,255,0.05) !important; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0f; }
+    ::-webkit-scrollbar-thumb { background: #22222e; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #333; }
+    input[type="time"] { color-scheme: dark; }
+    input[type="number"] { color-scheme: dark; }
+    .schedule-card { transition: all 0.25s ease; }
+    .schedule-card:hover { background: #1a1a26; }
+    .badge-bounce { animation: badgeBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    @keyframes badgeBounce { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+  </style>
+</head>
+<body class="font-sans text-gray-300 min-h-screen antialiased">
+
+  <!-- Toast container -->
+  <div id="toast-container" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] flex flex-col items-center gap-2 pointer-events-none"></div>
+
+  <!-- Hero -->
+  <header class="relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-electric/10 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-rose/10 rounded-full blur-[120px]"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-4 pt-16 pb-12 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-dark-600 bg-dark-800/80 backdrop-blur text-xs font-mono text-gray-500 mb-8">
+        <span class="w-1.5 h-1.5 rounded-full bg-rose pulse-dot"></span>
+        14.02.2026 &mdash; Saint-Valentin
+      </div>
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-tight mb-4">
+        Le Guide<br />
+        <span class="gradient-text-electric">Lucas</span>
+        <span class="text-gray-600 mx-1">&</span>
+        <span class="gradient-text-rose">Cannelle</span>
+      </h1>
+      <p class="text-gray-500 max-w-md mx-auto text-sm sm:text-base leading-relaxed">
+        Deux budgets, un seul objectif&nbsp;: une journée inoubliable dans les Hauts&#8209;de&#8209;France.
+      </p>
+      <div class="mt-8 flex items-center justify-center gap-3">
+        <i data-lucide="heart" class="w-4 h-4 text-rose"></i>
+        <span class="text-xs font-mono text-gray-600 tracking-widest uppercase">Explore &middot; Create &middot; Love</span>
+        <i data-lucide="heart" class="w-4 h-4 text-electric"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <main class="max-w-5xl mx-auto px-4 pb-28">
+    <div class="flex justify-center mb-10">
+      <div class="relative inline-flex bg-dark-800 rounded-xl p-1 border border-dark-600" id="tab-bar">
+        <div id="tab-indicator" class="tab-indicator absolute top-1 bottom-1 rounded-lg bg-dark-600" style="left:4px;"></div>
+        <button id="tab-btn-confort" onclick="switchTab('confort')"
+          class="relative z-10 flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors text-white">
+          <i data-lucide="gem" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Budget</span> Confort
+        </button>
+        <button id="tab-btn-zero" onclick="switchTab('zero')"
+          class="relative z-10 flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors text-gray-500">
+          <i data-lucide="leaf" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Budget</span> Zéro
+        </button>
+        <button id="tab-btn-planning" onclick="switchTab('planning')"
+          class="relative z-10 flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors text-gray-500">
+          <i data-lucide="clock" class="w-4 h-4"></i>
+          Planning
+          <span id="planning-badge" class="hidden ml-0.5 w-5 h-5 rounded-full bg-rose text-white text-[10px] font-bold flex items-center justify-center badge-bounce">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Section: Budget Confort -->
+    <section id="section-confort" class="fade-in">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-electric/30 to-transparent"></div>
+        <span class="text-[11px] font-mono text-electric/60 tracking-widest uppercase">Expériences Premium ~50km</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-electric/30 to-transparent"></div>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6" id="cards-confort"></div>
+    </section>
+
+    <!-- Section: Budget Zéro -->
+    <section id="section-zero" class="hidden fade-in">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-rose/30 to-transparent"></div>
+        <span class="text-[11px] font-mono text-rose/60 tracking-widest uppercase">Exploration & Créativité Locale</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-rose/30 to-transparent"></div>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-6" id="cards-zero"></div>
+    </section>
+
+    <!-- Section: Planning -->
+    <section id="section-planning" class="hidden fade-in">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-electric/30 to-transparent"></div>
+        <span class="text-[11px] font-mono text-gray-500 tracking-widest uppercase">Ta Journée sur Mesure</span>
+        <div class="h-px flex-1 bg-gradient-to-r from-transparent via-rose/30 to-transparent"></div>
+      </div>
+
+      <!-- Start time picker -->
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-8 p-4 bg-dark-800 rounded-xl border border-dark-600">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-electric/10 flex items-center justify-center">
+            <i data-lucide="alarm-clock" class="w-4 h-4 text-electric"></i>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-white">Heure de départ</p>
+            <p class="text-xs text-gray-500">Début de ta journée</p>
+          </div>
+        </div>
+        <input type="time" id="start-time" value="10:00"
+          class="bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-sm text-white font-mono focus:outline-none focus:border-electric/50 sm:ml-auto" onchange="renderPlanning(); saveState();" />
+      </div>
+
+      <!-- Empty state -->
+      <div id="planning-empty" class="text-center py-16">
+        <div class="w-16 h-16 rounded-2xl bg-dark-800 border border-dark-600 flex items-center justify-center mx-auto mb-4">
+          <i data-lucide="calendar-plus" class="w-7 h-7 text-gray-600"></i>
+        </div>
+        <p class="text-gray-500 text-sm mb-1">Aucune étape dans ton planning</p>
+        <p class="text-gray-600 text-xs">Ajoute des activités depuis les onglets <span class="text-electric">Confort</span> ou <span class="text-rose">Zéro</span></p>
+      </div>
+
+      <!-- Timeline -->
+      <div id="planning-timeline" class="hidden"></div>
+
+      <!-- Summary -->
+      <div id="planning-summary" class="hidden mt-6 p-4 bg-dark-800 rounded-xl border border-dark-600">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-electric/20 to-rose/20 flex items-center justify-center">
+            <i data-lucide="route" class="w-4 h-4 text-white"></i>
+          </div>
+          <p class="text-sm font-semibold text-white">Résumé de la journée</p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="summary-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-dark-700 py-10 mb-4">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="flex items-center justify-center gap-2 mb-3">
+        <i data-lucide="sparkles" class="w-4 h-4 text-electric"></i>
+        <span class="text-sm font-semibold text-gray-400">BrightShell</span>
+        <i data-lucide="sparkles" class="w-4 h-4 text-rose"></i>
+      </div>
+      <p class="text-xs text-gray-600 leading-relaxed max-w-sm mx-auto">
+        Propulsé par <span class="text-gray-400 font-medium">BrightShell</span> &mdash; Pour une Saint-Valentin hors du commun.
+      </p>
+      <div class="mt-4 flex items-center justify-center gap-1 text-gray-700">
+        <span class="text-[10px] font-mono">made with</span>
+        <i data-lucide="heart" class="w-3 h-3 text-rose"></i>
+        <span class="text-[10px] font-mono">in Hauts-de-France</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ==================== DATA ====================
+    const allItems = [
+      {
+        id: 'louvre-lens', title: 'Louvre-Lens', location: 'Lens', city: 'lens',
+        icon: 'camera', address: '99 Rue Paul Bert, 62300 Lens',
+        maps: 'https://maps.google.com/?q=Louvre-Lens+Lens',
+        description: 'Architecture en verre spectaculaire, idéal pour la photo.',
+        quote: 'Le terrain de jeu parfait pour ton objectif.',
+        tag: 'Culture', budget: 'confort', duration: 120,
+      },
+      {
+        id: 'weembi', title: 'Weembi', location: 'Lesquin', city: 'lesquin',
+        icon: 'wind', address: '30 Rue Jean Prouvé, 59810 Lesquin',
+        maps: 'https://maps.google.com/?q=Weembi+Lesquin',
+        description: 'Chute libre en soufflerie pour des sensations extrêmes.',
+        quote: 'Sensations fortes et rushes vidéo incroyables.',
+        tag: 'Adrénaline', budget: 'confort', duration: 90,
+      },
+      {
+        id: 'la-grange', title: 'La Grange', location: 'Marchiennes', city: 'marchiennes',
+        icon: 'utensils', address: '22 Rue du Moulin, 59870 Marchiennes',
+        maps: 'https://maps.google.com/?q=Restaurant+La+Grange+Marchiennes',
+        description: 'Restaurant gastronomique dans un cadre rustique et chic.',
+        quote: 'Un dîner qui mêle raffinement et authenticité.',
+        tag: 'Gastronomie', budget: 'confort', duration: 120,
+      },
+      {
+        id: 'expo-immersive', title: 'Expo Immersive', location: 'Lille', city: 'lille',
+        icon: 'monitor', address: 'Tripostal, Avenue Willy Brandt, 59000 Lille',
+        maps: 'https://maps.google.com/?q=Tripostal+Lille+exposition+immersive',
+        description: 'Art numérique et jeux de lumière dans un lieu unique.',
+        quote: 'Plonge dans un monde de couleurs et de pixels.',
+        tag: 'Art Digital', budget: 'confort', duration: 90,
+      },
+      {
+        id: 'diner-arras', title: 'Dîner aux Arcades', location: 'Arras — Grand\'Place', city: 'arras',
+        icon: 'flame', address: 'Grand\'Place, 62000 Arras',
+        maps: 'https://maps.google.com/?q=Grand+Place+Arras',
+        description: 'Dîner aux chandelles sous les arcades illuminées.',
+        quote: 'L\'endroit le plus romantique des Hauts-de-France.',
+        tag: 'Romantique', budget: 'confort', duration: 120,
+      },
+      {
+        id: 'terrils', title: 'Terrils du 11/19', location: 'Loos-en-Gohelle', city: 'loos',
+        icon: 'mountain', address: 'Base 11/19, 62750 Loos-en-Gohelle',
+        maps: 'https://maps.google.com/?q=Terrils+11+19+Loos-en-Gohelle',
+        description: 'Randonnée cardio avec vue panoramique sur le bassin minier au coucher du soleil.',
+        quote: 'Le sommet le plus haut du Pas-de-Calais, à vos pieds.',
+        tag: 'Rando', budget: 'zero', duration: 75,
+      },
+      {
+        id: 'foret-marchiennes', title: 'Forêt de Marchiennes', location: 'Marchiennes', city: 'marchiennes',
+        icon: 'trees', address: 'Forêt domaniale de Marchiennes, 59870',
+        maps: 'https://maps.google.com/?q=Forêt+de+Marchiennes',
+        description: 'Shooting photo "Nature & Lumière" dans les sentiers secrets.',
+        quote: 'Des chemins où la lumière joue à cache-cache.',
+        tag: 'Photo', budget: 'zero', duration: 60,
+      },
+      {
+        id: 'citadelle', title: 'Citadelle de Vauban', location: 'Lille', city: 'lille',
+        icon: 'shield', address: 'Avenue du 43e Régiment d\'Infanterie, 59800 Lille',
+        maps: 'https://maps.google.com/?q=Citadelle+de+Vauban+Lille',
+        description: 'Pique-nique "Healthy" fait maison sur les remparts.',
+        quote: 'Un clin d\'œil militaire pour un moment de paix.',
+        tag: 'Pique-nique', budget: 'zero', duration: 90,
+      },
+      {
+        id: 'street-art', title: 'Street Art Tour', location: 'Roubaix', city: 'roubaix',
+        icon: 'palette', address: 'Centre-ville, 59100 Roubaix',
+        maps: 'https://maps.google.com/?q=Street+Art+Roubaix+centre',
+        description: 'Exploration urbaine gratuite pour capturer des visuels graphiques.',
+        quote: 'Chaque mur est une galerie à ciel ouvert.',
+        tag: 'Urbain', budget: 'zero', duration: 60,
+      },
+      {
+        id: 'mont-saint-eloi', title: 'Mont Saint-Éloi', location: 'Mont-Saint-Éloi', city: 'mont-saint-eloi',
+        icon: 'landmark', address: 'Ruines de l\'Abbaye, 62161 Mont-Saint-Éloi',
+        maps: 'https://maps.google.com/?q=Ruines+Abbaye+Mont+Saint+Eloi',
+        description: 'Moment suspendu face aux ruines de l\'abbaye pour finir la journée.',
+        quote: 'Quand le silence raconte mille histoires.',
+        tag: 'Contemplation', budget: 'zero', duration: 45,
+      },
+    ];
+
+    const confortItems = allItems.filter(i => i.budget === 'confort');
+    const zeroItems = allItems.filter(i => i.budget === 'zero');
+
+    // Driving times in minutes (symmetric matrix)
+    const drivingTimes = {
+      'lens':            { 'lens': 0, 'lesquin': 25, 'marchiennes': 40, 'lille': 35, 'arras': 20, 'loos': 5,  'roubaix': 40, 'mont-saint-eloi': 15 },
+      'lesquin':         { 'lens': 25, 'lesquin': 0, 'marchiennes': 30, 'lille': 15, 'arras': 40, 'loos': 25, 'roubaix': 15, 'mont-saint-eloi': 35 },
+      'marchiennes':     { 'lens': 40, 'lesquin': 30, 'marchiennes': 0, 'lille': 35, 'arras': 55, 'loos': 40, 'roubaix': 25, 'mont-saint-eloi': 50 },
+      'lille':           { 'lens': 35, 'lesquin': 15, 'marchiennes': 35, 'lille': 0, 'arras': 50, 'loos': 30, 'roubaix': 15, 'mont-saint-eloi': 40 },
+      'arras':           { 'lens': 20, 'lesquin': 40, 'marchiennes': 55, 'lille': 50, 'arras': 0, 'loos': 15, 'roubaix': 55, 'mont-saint-eloi': 10 },
+      'loos':            { 'lens': 5, 'lesquin': 25, 'marchiennes': 40, 'lille': 30, 'arras': 15, 'loos': 0, 'roubaix': 40, 'mont-saint-eloi': 15 },
+      'roubaix':         { 'lens': 40, 'lesquin': 15, 'marchiennes': 25, 'lille': 15, 'arras': 55, 'loos': 40, 'roubaix': 0, 'mont-saint-eloi': 50 },
+      'mont-saint-eloi': { 'lens': 15, 'lesquin': 35, 'marchiennes': 50, 'lille': 40, 'arras': 10, 'loos': 15, 'roubaix': 50, 'mont-saint-eloi': 0 },
+    };
+
+    function getDriveTime(cityA, cityB) {
+      if (cityA === cityB) return 0;
+      return (drivingTimes[cityA] && drivingTimes[cityA][cityB]) || 30;
+    }
+
+    // ==================== SCHEDULE STATE ====================
+    let schedule = []; // Array of { id, duration } -- order matters
+
+    function getItemById(id) { return allItems.find(i => i.id === id); }
+
+    function isInSchedule(id) { return schedule.some(s => s.id === id); }
+
+    function addToSchedule(id) {
+      if (isInSchedule(id)) {
+        removeFromSchedule(id);
+        return;
+      }
+      const item = getItemById(id);
+      if (!item) return;
+      schedule.push({ id: item.id, duration: item.duration });
+      saveState();
+      updateUI();
+      showToast(`${item.title} ajouté au planning`);
+    }
+
+    function removeFromSchedule(id) {
+      const item = getItemById(id);
+      schedule = schedule.filter(s => s.id !== id);
+      saveState();
+      updateUI();
+      if (item) showToast(`${item.title} retiré du planning`);
+    }
+
+    function moveInSchedule(fromIndex, toIndex) {
+      if (toIndex < 0 || toIndex >= schedule.length) return;
+      const [moved] = schedule.splice(fromIndex, 1);
+      schedule.splice(toIndex, 0, moved);
+      saveState();
+      renderPlanning();
+    }
+
+    function updateDuration(id, newDuration) {
+      const entry = schedule.find(s => s.id === id);
+      if (entry) {
+        entry.duration = Math.max(15, Math.min(480, newDuration));
+        saveState();
+        renderPlanning();
+      }
+    }
+
+    // ==================== CONSTANTS ====================
+    const tabKeys = ['confort', 'zero', 'planning'];
+
+    // ==================== PERSISTENCE ====================
+    const STORAGE_KEY = 'vday-state';
+
+    function saveState() {
+      try {
+        const state = {
+          schedule,
+          activeTab,
+          startTime: document.getElementById('start-time')?.value || '10:00',
+          lastSaved: new Date().toISOString(),
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch(e) {}
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const state = JSON.parse(raw);
+        if (Array.isArray(state.schedule)) schedule = state.schedule;
+        if (state.activeTab && tabKeys.includes(state.activeTab)) {
+          activeTab = state.activeTab;
+        }
+        if (state.startTime) {
+          const input = document.getElementById('start-time');
+          if (input) input.value = state.startTime;
+        }
+      } catch(e) {}
+    }
+
+    // Legacy migration: pick up old key if present
+    function migrateLegacy() {
+      try {
+        const old = localStorage.getItem('vday-schedule');
+        if (old) {
+          schedule = JSON.parse(old);
+          localStorage.removeItem('vday-schedule');
+          saveState();
+        }
+      } catch(e) {}
+    }
+
+    // ==================== RENDER CARDS ====================
+    function createCard(item, accent) {
+      const isElectric = accent === 'electric';
+      const accentColor = isElectric ? 'electric' : 'rose';
+      const borderHover = isElectric ? 'hover:border-electric/30' : 'hover:border-rose/30';
+      const tagBg = isElectric ? 'bg-electric/10 text-electric' : 'bg-rose/10 text-rose';
+      const btnCopy = isElectric
+        ? 'border-electric/20 text-electric hover:bg-electric/10'
+        : 'border-rose/20 text-rose hover:bg-rose/10';
+      const btnMaps = isElectric
+        ? 'bg-electric/10 text-electric hover:bg-electric/20'
+        : 'bg-rose/10 text-rose hover:bg-rose/20';
+
+      const inSchedule = isInSchedule(item.id);
+      const addBtnClass = inSchedule
+        ? 'bg-emerald-500/20 border-emerald-500/30 text-emerald-400'
+        : (isElectric ? 'border-electric/20 text-electric hover:bg-electric/10' : 'border-rose/20 text-rose hover:bg-rose/10');
+      const addIcon = inSchedule ? 'check' : 'plus';
+      const addLabel = inSchedule ? 'Ajouté' : 'Planning';
+
+      return `
+        <div class="card-hover group relative bg-dark-800 border border-dark-600 ${borderHover} rounded-2xl p-5 flex flex-col transition-all" id="card-${item.id}">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-[10px] font-mono font-medium tracking-wider uppercase px-2.5 py-1 rounded-full ${tagBg}">
+              ${item.tag}
+            </span>
+            <i data-lucide="${item.icon}" class="w-4 h-4 text-gray-600 group-hover:text-${accentColor} transition-colors"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white mb-0.5">${item.title}</h3>
+          <div class="flex items-center gap-1.5 mb-3">
+            <i data-lucide="map-pin" class="w-3 h-3 text-gray-600"></i>
+            <span class="text-xs text-gray-500">${item.location}</span>
+          </div>
+          <p class="text-sm text-gray-400 leading-relaxed mb-3 flex-1">${item.description}</p>
+          <div class="border-l-2 border-${accentColor}/30 pl-3 mb-4">
+            <p class="text-xs italic text-gray-500">"${item.quote}"</p>
+          </div>
+          <!-- Duration hint -->
+          <div class="flex items-center gap-1.5 mb-4 text-gray-600">
+            <i data-lucide="clock" class="w-3 h-3"></i>
+            <span class="text-[11px] font-mono">~${item.duration} min</span>
+          </div>
+          <!-- Actions -->
+          <div class="flex gap-2 mt-auto">
+            <button onclick="addToSchedule('${item.id}')"
+              class="flex items-center justify-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg border ${addBtnClass} transition-colors cursor-pointer"
+              title="Ajouter au planning">
+              <i data-lucide="${addIcon}" class="w-3.5 h-3.5"></i>
+              ${addLabel}
+            </button>
+            <button onclick="copyAddress('${item.address.replace(/'/g, "\\'")}')"
+              class="flex-1 flex items-center justify-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg border ${btnCopy} transition-colors cursor-pointer">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              Adresse
+            </button>
+            <a href="${item.maps}" target="_blank" rel="noopener noreferrer"
+              class="flex items-center justify-center gap-1.5 text-xs font-medium px-3 py-2 rounded-lg ${btnMaps} transition-colors">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              Maps
+            </a>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderCards() {
+      document.getElementById('cards-confort').innerHTML = confortItems.map(i => createCard(i, 'electric')).join('');
+      document.getElementById('cards-zero').innerHTML = zeroItems.map(i => createCard(i, 'rose')).join('');
+    }
+
+    // ==================== RENDER PLANNING ====================
+    function addMinutes(timeStr, mins) {
+      const [h, m] = timeStr.split(':').map(Number);
+      const total = h * 60 + m + mins;
+      const nh = Math.floor(total / 60) % 24;
+      const nm = total % 60;
+      return `${String(nh).padStart(2,'0')}:${String(nm).padStart(2,'0')}`;
+    }
+
+    function formatDuration(mins) {
+      if (mins < 60) return `${mins}min`;
+      const h = Math.floor(mins / 60);
+      const m = mins % 60;
+      return m > 0 ? `${h}h${String(m).padStart(2,'0')}` : `${h}h`;
+    }
+
+    function renderPlanning() {
+      const emptyEl = document.getElementById('planning-empty');
+      const timelineEl = document.getElementById('planning-timeline');
+      const summaryEl = document.getElementById('planning-summary');
+
+      if (schedule.length === 0) {
+        emptyEl.classList.remove('hidden');
+        timelineEl.classList.add('hidden');
+        summaryEl.classList.add('hidden');
+        return;
+      }
+
+      emptyEl.classList.add('hidden');
+      timelineEl.classList.remove('hidden');
+      summaryEl.classList.remove('hidden');
+
+      const startTime = document.getElementById('start-time').value || '10:00';
+      let currentTime = startTime;
+      let totalDrive = 0;
+      let totalActivity = 0;
+      let html = '';
+
+      schedule.forEach((entry, idx) => {
+        const item = getItemById(entry.id);
+        if (!item) return;
+        const accent = item.budget === 'confort' ? 'electric' : 'rose';
+        const dotColor = item.budget === 'confort' ? 'bg-electric' : 'bg-rose';
+        const borderColor = item.budget === 'confort' ? 'border-electric/30' : 'border-rose/30';
+
+        // Driving time from previous
+        let driveTime = 0;
+        if (idx > 0) {
+          const prevItem = getItemById(schedule[idx - 1].id);
+          if (prevItem) {
+            driveTime = getDriveTime(prevItem.city, item.city);
+            totalDrive += driveTime;
+            if (driveTime > 0) {
+              html += `
+                <div class="flex items-stretch gap-3 sm:gap-4">
+                  <div class="flex flex-col items-center w-16 sm:w-20 shrink-0">
+                    <span class="text-[11px] font-mono text-gray-600">${currentTime}</span>
+                    <div class="flex-1 w-px bg-dark-600 my-1 min-h-[20px]"></div>
+                  </div>
+                  <div class="flex items-center gap-2 py-2 px-3 rounded-lg bg-dark-800/50 border border-dashed border-dark-600 text-xs text-gray-500 my-1 w-full">
+                    <i data-lucide="car" class="w-3.5 h-3.5 text-gray-600 shrink-0"></i>
+                    <span class="font-mono">${driveTime} min</span>
+                    <span class="text-gray-600">en voiture</span>
+                    <span class="text-gray-600 ml-auto hidden sm:inline">${prevItem.location} → ${item.location}</span>
+                  </div>
+                </div>`;
+              currentTime = addMinutes(currentTime, driveTime);
+            }
+          }
+        }
+
+        const activityStart = currentTime;
+        const activityEnd = addMinutes(currentTime, entry.duration);
+        totalActivity += entry.duration;
+
+        html += `
+          <div class="flex items-stretch gap-3 sm:gap-4 schedule-card rounded-xl" data-idx="${idx}" draggable="true"
+               ondragstart="onDragStart(event, ${idx})" ondragover="onDragOver(event)" ondrop="onDrop(event, ${idx})" ondragend="onDragEnd(event)">
+            <!-- Time column -->
+            <div class="flex flex-col items-center w-16 sm:w-20 shrink-0 py-1">
+              <span class="text-sm font-mono font-semibold text-white">${activityStart}</span>
+              <div class="flex-1 w-0.5 timeline-line my-1 rounded-full min-h-[40px] opacity-40"></div>
+              <span class="text-[11px] font-mono text-gray-500">${activityEnd}</span>
+            </div>
+            <!-- Card -->
+            <div class="flex-1 bg-dark-800 border ${borderColor} rounded-xl p-4 my-1 relative group/card">
+              <!-- Drag handle -->
+              <div class="absolute top-3 right-3 flex items-center gap-1">
+                ${idx > 0 ? `<button onclick="moveInSchedule(${idx}, ${idx-1})" class="p-1 rounded hover:bg-dark-700 text-gray-600 hover:text-gray-400 transition-colors" title="Monter"><i data-lucide="chevron-up" class="w-3.5 h-3.5"></i></button>` : ''}
+                ${idx < schedule.length - 1 ? `<button onclick="moveInSchedule(${idx}, ${idx+1})" class="p-1 rounded hover:bg-dark-700 text-gray-600 hover:text-gray-400 transition-colors" title="Descendre"><i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></button>` : ''}
+                <button onclick="removeFromSchedule('${item.id}')" class="p-1 rounded hover:bg-red-500/10 text-gray-600 hover:text-red-400 transition-colors" title="Retirer">
+                  <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <div class="flex items-center gap-2 mb-2">
+                <div class="w-2 h-2 rounded-full ${dotColor}"></div>
+                <span class="text-[10px] font-mono uppercase tracking-wider ${accent === 'electric' ? 'text-electric/60' : 'text-rose/60'}">${item.tag}</span>
+              </div>
+              <h4 class="text-base font-bold text-white mb-0.5 pr-20">${item.title}</h4>
+              <div class="flex items-center gap-1.5 mb-3">
+                <i data-lucide="map-pin" class="w-3 h-3 text-gray-600"></i>
+                <span class="text-xs text-gray-500">${item.location}</span>
+              </div>
+              <!-- Duration control -->
+              <div class="flex items-center gap-3 flex-wrap">
+                <div class="flex items-center gap-2 bg-dark-700 rounded-lg px-2.5 py-1.5">
+                  <i data-lucide="clock" class="w-3 h-3 text-gray-500"></i>
+                  <button onclick="updateDuration('${item.id}', ${entry.duration - 15})" class="text-gray-500 hover:text-white transition-colors text-xs font-bold px-1">−</button>
+                  <span class="text-xs font-mono text-white min-w-[40px] text-center">${formatDuration(entry.duration)}</span>
+                  <button onclick="updateDuration('${item.id}', ${entry.duration + 15})" class="text-gray-500 hover:text-white transition-colors text-xs font-bold px-1">+</button>
+                </div>
+                <a href="${item.maps}" target="_blank" rel="noopener noreferrer"
+                  class="flex items-center gap-1.5 text-[11px] font-medium text-gray-500 hover:text-${accent} transition-colors">
+                  <i data-lucide="external-link" class="w-3 h-3"></i>
+                  Maps
+                </a>
+                <button onclick="copyAddress('${item.address.replace(/'/g, "\\'")}')"
+                  class="flex items-center gap-1.5 text-[11px] font-medium text-gray-500 hover:text-${accent} transition-colors cursor-pointer">
+                  <i data-lucide="copy" class="w-3 h-3"></i>
+                  Adresse
+                </button>
+              </div>
+            </div>
+          </div>`;
+
+        currentTime = activityEnd;
+      });
+
+      // End marker
+      html += `
+        <div class="flex items-center gap-3 sm:gap-4">
+          <div class="flex flex-col items-center w-16 sm:w-20 shrink-0">
+            <span class="text-sm font-mono font-semibold text-emerald-400">${currentTime}</span>
+          </div>
+          <div class="flex items-center gap-2 py-2 px-3 text-xs text-emerald-400/70 font-medium">
+            <i data-lucide="flag" class="w-3.5 h-3.5"></i>
+            Fin de la journée
+          </div>
+        </div>`;
+
+      timelineEl.innerHTML = html;
+
+      // Summary
+      const totalMins = totalDrive + totalActivity;
+      document.getElementById('summary-grid').innerHTML = `
+        <div class="bg-dark-700 rounded-lg p-3 text-center">
+          <p class="text-lg font-bold text-white">${schedule.length}</p>
+          <p class="text-[10px] font-mono text-gray-500 uppercase tracking-wider mt-0.5">Étapes</p>
+        </div>
+        <div class="bg-dark-700 rounded-lg p-3 text-center">
+          <p class="text-lg font-bold text-electric">${formatDuration(totalActivity)}</p>
+          <p class="text-[10px] font-mono text-gray-500 uppercase tracking-wider mt-0.5">Activités</p>
+        </div>
+        <div class="bg-dark-700 rounded-lg p-3 text-center">
+          <p class="text-lg font-bold text-rose">${formatDuration(totalDrive)}</p>
+          <p class="text-[10px] font-mono text-gray-500 uppercase tracking-wider mt-0.5">En voiture</p>
+        </div>
+        <div class="bg-dark-700 rounded-lg p-3 text-center">
+          <p class="text-lg font-bold gradient-text-mixed">${startTime}→${currentTime}</p>
+          <p class="text-[10px] font-mono text-gray-500 uppercase tracking-wider mt-0.5">${formatDuration(totalMins)} total</p>
+        </div>`;
+
+      lucide.createIcons();
+    }
+
+    // ==================== DRAG & DROP ====================
+    let dragIdx = null;
+
+    function onDragStart(e, idx) {
+      dragIdx = idx;
+      e.dataTransfer.effectAllowed = 'move';
+      e.currentTarget.style.opacity = '0.5';
+    }
+
+    function onDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      e.currentTarget.classList.add('drag-over');
+    }
+
+    function onDrop(e, toIdx) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      if (dragIdx !== null && dragIdx !== toIdx) {
+        moveInSchedule(dragIdx, toIdx);
+      }
+      dragIdx = null;
+    }
+
+    function onDragEnd(e) {
+      e.currentTarget.style.opacity = '1';
+      document.querySelectorAll('.drag-over').forEach(el => el.classList.remove('drag-over'));
+      dragIdx = null;
+    }
+
+    // ==================== TABS ====================
+    let activeTab = 'confort';
+
+    function switchTab(tab) {
+      if (tab === activeTab) return;
+      activeTab = tab;
+
+      // Update indicator position
+      const tabBar = document.getElementById('tab-bar');
+      const btn = document.getElementById(`tab-btn-${tab}`);
+      const indicator = document.getElementById('tab-indicator');
+      if (btn && tabBar) {
+        const barRect = tabBar.getBoundingClientRect();
+        const btnRect = btn.getBoundingClientRect();
+        indicator.style.left = (btnRect.left - barRect.left) + 'px';
+        indicator.style.width = btnRect.width + 'px';
+      }
+
+      // Update button text colors
+      tabKeys.forEach(key => {
+        const b = document.getElementById(`tab-btn-${key}`);
+        if (b) {
+          if (key === tab) b.classList.replace('text-gray-500', 'text-white');
+          else b.classList.replace('text-white', 'text-gray-500');
+        }
+      });
+
+      // Show/hide sections
+      tabKeys.forEach(key => {
+        const section = document.getElementById(`section-${key}`);
+        if (section) {
+          if (key === tab) {
+            section.classList.remove('hidden');
+            section.classList.remove('fade-in');
+            void section.offsetWidth;
+            section.classList.add('fade-in');
+          } else {
+            section.classList.add('hidden');
+          }
+        }
+      });
+
+      if (tab === 'planning') renderPlanning();
+      saveState();
+    }
+
+    // ==================== BADGE & UI SYNC ====================
+    function updateBadge() {
+      const badge = document.getElementById('planning-badge');
+      if (schedule.length > 0) {
+        badge.textContent = schedule.length;
+        badge.classList.remove('hidden');
+        badge.classList.add('flex');
+      } else {
+        badge.classList.add('hidden');
+        badge.classList.remove('flex');
+      }
+    }
+
+    function updateUI() {
+      renderCards();
+      updateBadge();
+      if (activeTab === 'planning') renderPlanning();
+      lucide.createIcons();
+    }
+
+    // ==================== COPY ====================
+    function copyAddress(address) {
+      navigator.clipboard.writeText(address).then(() => {
+        showToast('Adresse copiée !');
+      }).catch(() => {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = address; ta.style.position = 'fixed'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); showToast('Adresse copiée !'); }
+        catch(e) { showToast('Erreur de copie'); }
+        document.body.removeChild(ta);
+      });
+    }
+
+    function showToast(message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = 'toast inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-dark-700 border border-dark-600 text-sm text-white shadow-lg pointer-events-auto';
+      toast.innerHTML = `<i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>${message}`;
+      container.appendChild(toast);
+      lucide.createIcons();
+      setTimeout(() => toast.remove(), 2200);
+    }
+
+    // ==================== INIT ====================
+    document.addEventListener('DOMContentLoaded', () => {
+      migrateLegacy();
+      loadState();
+      updateUI();
+
+      // Restore active tab (need to force-apply since switchTab bails if same)
+      const savedTab = activeTab;
+      requestAnimationFrame(() => {
+        // Set indicator on the correct tab
+        const tabBar = document.getElementById('tab-bar');
+        const btn = document.getElementById(`tab-btn-${savedTab}`);
+        const indicator = document.getElementById('tab-indicator');
+        if (btn && tabBar) {
+          const barRect = tabBar.getBoundingClientRect();
+          const btnRect = btn.getBoundingClientRect();
+          indicator.style.left = (btnRect.left - barRect.left) + 'px';
+          indicator.style.width = btnRect.width + 'px';
+        }
+
+        // Restore tab visibility & button colors
+        tabKeys.forEach(key => {
+          const section = document.getElementById(`section-${key}`);
+          const b = document.getElementById(`tab-btn-${key}`);
+          if (section) {
+            if (key === savedTab) section.classList.remove('hidden');
+            else section.classList.add('hidden');
+          }
+          if (b) {
+            if (key === savedTab) { b.classList.remove('text-gray-500'); b.classList.add('text-white'); }
+            else { b.classList.remove('text-white'); b.classList.add('text-gray-500'); }
+          }
+        });
+
+        if (savedTab === 'planning') renderPlanning();
+      });
+    });
+  </script>
+</body>
+</html>
