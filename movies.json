@@ -1,0 +1,222 @@
+[
+  {
+    "title": "Marsupilami",
+    "genre": "Comédie / Aventure",
+    "loc": "Tous",
+    "tag": "Familial",
+    "duration": 99,
+    "desc": "La nouvelle adaptation par Philippe Lacheau et la Bande à Fifi. Un bébé Marsupilami s'échappe d'un colis et transforme une croisière en chaos total.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=317669.html",
+    "poster": "https://image.tmdb.org/t/p/w500/56yJGQSLMlFwMEadUxIniMfYEal.jpg"
+  },
+  {
+    "title": "LOL 2.0",
+    "genre": "Comédie",
+    "loc": "Douai / Valenciennes",
+    "tag": "Nostalgie",
+    "duration": 100,
+    "desc": "Le retour de la franchise générationnelle avec Sophie Marceau. Anne, 55 ans, voit sa fille Louise revenir vivre chez elle après un échec sentimental.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=LOL+2.0",
+    "poster": "https://image.tmdb.org/t/p/w500/p6Bh8WruEn9gviPrrNjIKdfWJBz.jpg"
+  },
+  {
+    "title": "Marty Supreme",
+    "genre": "Biopic / Drame",
+    "loc": "Valenciennes",
+    "tag": "Esthétique",
+    "duration": 149,
+    "desc": "Timothée Chalamet dirigé par Josh Safdie. Visuellement frénétique. L'histoire de Marty Mauser, un jeune homme prêt à tout pour réaliser son rêve.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=1000007317.html",
+    "poster": "https://image.tmdb.org/t/p/w500/pMBGLBMQHLC3fxjCIrpiAMj9oFG.jpg"
+  },
+  {
+    "title": "Avatar : De Feu et de Cendres",
+    "genre": "Science-Fiction",
+    "loc": "Valenciennes",
+    "tag": "Spectaculaire",
+    "duration": 198,
+    "desc": "Fin de carrière en salle, mais toujours massif visuellement. James Cameron repousse les limites du cinéma immersif avec ce troisième volet.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=179093.html",
+    "poster": "https://image.tmdb.org/t/p/w500/dTaqzGmIYcOKGOjpezVsUvJfGsR.jpg"
+  },
+  {
+    "title": "L'infiltrée",
+    "genre": "Comédie",
+    "loc": "Douai / St-Amand",
+    "tag": "Détente",
+    "duration": 95,
+    "desc": "Comédie populaire avec Ahmed Sylla et Michèle Laroque. Un policier maladroit doit se travestir pour infiltrer un gang de guerrières.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=1000021765.html",
+    "poster": "https://image.tmdb.org/t/p/w500/lqFubrjFEpdhxXRnRLnweGpxFqv.jpg"
+  },
+  {
+    "title": "Gourou",
+    "genre": "Thriller psychologique",
+    "loc": "Valenciennes",
+    "tag": "Tension",
+    "duration": 126,
+    "desc": "Le nouveau film de Yann Gozlan avec Pierre Niney. Cadrages oppressants et parfaits pour l'analyse photo. L'ascension d'un coach en développement personnel tourne à la paranoïa.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=310988.html",
+    "poster": "https://image.tmdb.org/t/p/w500/gWy1f0mWGbDjkixOphQjfxidNil.jpg"
+  },
+  {
+    "title": "Cold Storage",
+    "genre": "Thriller / SF",
+    "loc": "Douai / Valenciennes",
+    "tag": "Frissons",
+    "duration": 100,
+    "desc": "Tension horrifique avec Liam Neeson et Joe Keery. Un micro-organisme mortel s'échappe d'une installation militaire souterraine.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=323164.html",
+    "poster": "https://image.tmdb.org/t/p/w500/i4fSMVlGEMjTbTHV0mFcahOmYfl.jpg"
+  },
+  {
+    "title": "GOAT : Rêver plus haut",
+    "genre": "Animation",
+    "loc": "Tous",
+    "tag": "Feel Good",
+    "duration": 100,
+    "desc": "Film d'animation familial. Will, une petite chèvre aux grands rêves, rejoint une ligue pro de roarball dominée par les animaux les plus féroces.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=GOAT+rever+plus+haut",
+    "poster": "https://image.tmdb.org/t/p/w500/pzIddUEMWhFjkg90TfKjJqlMfSa.jpg"
+  },
+  {
+    "title": "À demain sur la Lune",
+    "genre": "Comédie dramatique",
+    "loc": "Douai",
+    "tag": "Poétique",
+    "duration": 80,
+    "desc": "Une fable française touchante. Documentaire poignant sur une unité de soins palliatifs où un cheval nommé Peyo réconforte les patients.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=1000027242.html",
+    "poster": "https://image.tmdb.org/t/p/w500/4rF4xKAqIadymW4AdQvtWaHEEyK.jpg"
+  },
+  {
+    "title": "Send Help",
+    "genre": "Comédie / Horreur",
+    "loc": "Valenciennes",
+    "tag": "Survie",
+    "duration": 98,
+    "desc": "Un huis clos sur une île déserte par Sam Raimi, photographie très colorée et contrastée. Rachel McAdams et Dylan O'Brien en mode survie.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=323164.html",
+    "poster": "https://image.tmdb.org/t/p/w500/lOYVHqItyAzmJVxbzZxHPhgqkmw.jpg"
+  },
+  {
+    "title": "Super Charlie",
+    "genre": "Animation",
+    "loc": "Douai / St-Amand",
+    "tag": "Jeunesse",
+    "duration": 80,
+    "desc": "Animation grand public pour les vacances. L'aventure d'un garçon de 10 ans et de son bébé frère doté de super-pouvoirs.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=326812.html",
+    "poster": "https://image.tmdb.org/t/p/w500/3PqEVjeMqiFLaMahpCxIDHetf0J.jpg"
+  },
+  {
+    "title": "Le Son des souvenirs",
+    "genre": "Drame / Romance",
+    "loc": "Valenciennes",
+    "tag": "Date-Movie",
+    "duration": 105,
+    "desc": "Romance dramatique classique de la Saint-Valentin. Un film qui résonne avec les émotions et la mémoire du cœur.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=Le+son+des+souvenirs",
+    "poster": ""
+  },
+  {
+    "title": "Chers parents",
+    "genre": "Comédie",
+    "loc": "Douai",
+    "tag": "Théâtre",
+    "duration": 95,
+    "desc": "Adaptation de la pièce de théâtre à succès avec André Dussollier et Miou-Miou. Des parents gagnent au loto mais refusent de partager.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=1000012022.html",
+    "poster": "https://image.tmdb.org/t/p/w500/k5CEKMWxRApoObAMJFjhJDcijIa.jpg"
+  },
+  {
+    "title": "L'Ourse Et L'Oiseau",
+    "genre": "Animation",
+    "loc": "Valenciennes",
+    "tag": "Nature",
+    "duration": 45,
+    "desc": "Des plans réels magnifiques, parfaits pour l'inspiration documentaire. Quatre contes saisonniers mettant en scène des ours et des oiseaux.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=ourse+et+oiseau",
+    "poster": "https://image.tmdb.org/t/p/w500/cjMpiBBPNKFFseqBJCgMp19empE.jpg"
+  },
+  {
+    "title": "Coutures",
+    "genre": "Drame",
+    "loc": "Lille / Douai",
+    "tag": "Auteur",
+    "duration": 100,
+    "desc": "Plongée pointue dans le monde de la mode parisienne. Un regard intime sur les artisans de l'ombre derrière la haute couture.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=Coutures+film+2026",
+    "poster": ""
+  },
+  {
+    "title": "Le rêve américain",
+    "genre": "Documentaire",
+    "loc": "Valenciennes",
+    "tag": "Docu",
+    "duration": 90,
+    "desc": "Une exploration des paradoxes sociétaux actuels. Un documentaire qui questionne les mythes fondateurs de l'Amérique contemporaine.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=Le+rêve+américain+documentaire",
+    "poster": ""
+  },
+  {
+    "title": "Hurlevent",
+    "genre": "Drame Gothique",
+    "loc": "Tous",
+    "tag": "Top Photo",
+    "duration": 136,
+    "desc": "L'esthétique pop-gothique d'Emerald Fennell avec Margot Robbie et Jacob Elordi. Relecture sensuelle et tourmentée des Hauts de Hurlevent.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=Hurlevent+2026",
+    "poster": "https://image.tmdb.org/t/p/w500/cCn5jLSMBfMYvPbMrapSNyAVQeJ.jpg"
+  },
+  {
+    "title": "Furcy Libre",
+    "genre": "Historique",
+    "loc": "Douai",
+    "tag": "Puissant",
+    "duration": 108,
+    "desc": "Un combat judiciaire épique à la Réunion. L'histoire vraie de Furcy, le procès le plus long de l'histoire de l'esclavage français.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=292718.html",
+    "poster": "https://image.tmdb.org/t/p/w500/3dPBgMXfFqIwVBolGhYJAzWZSRo.jpg"
+  },
+  {
+    "title": "Les Enfants de la Résistance",
+    "genre": "Aventure",
+    "loc": "Douai / Valenciennes",
+    "tag": "Histoire",
+    "duration": 99,
+    "desc": "Adaptation de la célèbre bande dessinée française. Trois enfants s'engagent dans la Résistance durant l'Occupation.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=Les+enfants+de+la+résistance+film",
+    "poster": "https://image.tmdb.org/t/p/w500/sQ1Vo1r63jqhVLPKx2xPnRYiumx.jpg"
+  },
+  {
+    "title": "Mickey 17",
+    "genre": "Science-Fiction",
+    "loc": "Valenciennes",
+    "tag": "Cyber",
+    "duration": 137,
+    "desc": "Bong Joon-ho explore la survie et le clonage spatial. Robert Pattinson incarne un employé \"consommable\" régulièrement tué et régénéré.",
+    "allocine": "https://www.allocine.fr/film/fichefilm_gen_cfilm=300207.html",
+    "poster": "https://image.tmdb.org/t/p/w500/edKAHOFsfFmMBSyjzhk2EzKMPKO.jpg"
+  },
+  {
+    "title": "Didi",
+    "genre": "Indépendant",
+    "loc": "Valenciennes",
+    "tag": "Indé",
+    "duration": 91,
+    "desc": "Chronique adolescente ultra-réaliste primée à Sundance. L'été 2008 d'un ado taïwano-américain avant la rentrée au lycée.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=Didi+film+Sean+Wang",
+    "poster": "https://image.tmdb.org/t/p/w500/xFNXJGQ8FhMFIO3O1fMFeSvOWYs.jpg"
+  },
+  {
+    "title": "Scream 7",
+    "genre": "Horreur",
+    "loc": "Valenciennes",
+    "tag": "Slasher",
+    "duration": 115,
+    "desc": "Avant-premières pour le retour de la franchise. Neve Campbell revient en tant que Sidney Prescott, 30 ans après le premier film.",
+    "allocine": "https://www.allocine.fr/rechercher/?q=Scream+7",
+    "poster": "https://image.tmdb.org/t/p/w500/jq6rfLFk2FoMuEQ4MKh1poItqH1.jpg"
+  }
+]
