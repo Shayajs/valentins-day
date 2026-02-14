@@ -397,7 +397,7 @@
     const zeroItems = allItems.filter(i => i.budget === 'zero');
 
     // Driving times in minutes (symmetric matrix — all cities within ~40km of Bruille-lez-Marchiennes)
-    const cities = ['lens','lesquin','marchiennes','lille','arras','loos','roubaix','mont-saint-eloi','saint-amand','douai','lewarde','roost-warendin','raismes','wallers','pecquencourt'];
+    const cities = ['lens','lesquin','marchiennes','lille','arras','loos','roubaix','mont-saint-eloi','saint-amand','douai','lewarde','roost-warendin','raismes','wallers','pecquencourt','valenciennes'];
     const dtRaw = {
       'lens':            { 'lesquin':25,'marchiennes':40,'lille':35,'arras':20,'loos':5, 'roubaix':40,'mont-saint-eloi':15,'saint-amand':45,'douai':25,'lewarde':20,'roost-warendin':22,'raismes':40,'wallers':35,'pecquencourt':30 },
       'lesquin':         { 'marchiennes':30,'lille':15,'arras':40,'loos':25,'roubaix':15,'mont-saint-eloi':35,'saint-amand':30,'douai':25,'lewarde':25,'roost-warendin':22,'raismes':28,'wallers':25,'pecquencourt':25 },
@@ -413,7 +413,8 @@
       'roost-warendin':  { 'raismes':20,'wallers':15,'pecquencourt':8 },
       'raismes':         { 'wallers':10,'pecquencourt':15 },
       'wallers':         { 'pecquencourt':8 },
-      'pecquencourt':    {},
+      'pecquencourt':    { 'valenciennes':20 },
+      'valenciennes':    {},
     };
     // Build symmetric lookup
     const drivingTimes = {};
